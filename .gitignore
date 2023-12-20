@@ -1,0 +1,6 @@
+confluent-7.5.2/*
+confluent-community-7.5.2.zip
+plugins/*
+*.jar
+confluent-hub-components/*
+.DS_Store
