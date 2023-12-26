@@ -51,6 +51,8 @@ services:
       - schema-registry
     ports:
       - "8083:8083"
+    volumes:
+      - ./confidentials:/etc/confidentials
     environment:
       CONNECT_BOOTSTRAP_SERVERS: 'broker:29092'
       CONNECT_REST_ADVERTISED_HOST_NAME: connect
@@ -80,8 +82,9 @@ services:
         #  sure that this path is added to the plugin.path in the environment variables 
         
         confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.1.0
-        confluent-hub install --no-prompt debezium/debezium-connector-mongodb:1.1.0
-        confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:10.0.1
+        # confluent-hub install --no-prompt debezium/debezium-connector-mongodb:1.1.0
+        # confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:10.0.1
+        confluent-hub install --no-prompt wepay/kafka-connect-bigquery:2.5.2
         
         # Launch the Kafka Connect worker
         /etc/confluent/docker/run &
@@ -186,7 +189,7 @@ services:
     environment:
       POSTGRES_USER: postgres-user
       POSTGRES_PASSWORD: postgres-pw
-      POSTGRES_DB: customers
+      POSTGRES_DB: airbnb
     volumes:
       - ./postgres/custom-config.conf:/etc/postgresql/postgresql.conf
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
