@@ -1,0 +1,20 @@
+CREATE SINK CONNECTOR SINK__AIRBNB_RAW__LISTINGS WITH (
+      'connector.class' = 'com.wepay.kafka.connect.bigquery.BigQuerySinkConnector',
+      'tasks.max' = '1',
+      'topics' = 'airbnb_raw__listings',
+      'sanitizeTopics' = 'true',
+      'autoCreateTables' = 'true',
+      'allowNewBigQueryFields' = 'true',
+      'allowBigQueryRequiredFieldRelaxation' = 'true',
+      'schemaRetriever' = 'com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever',
+      'project' = 'kafka-408805',
+      'defaultDataset' = '.*=airbnb',
+      'allBQFieldsNullable' = 'true',
+      'bigQueryRetry'='10',
+      'keyfile' = 'etc/confidentials/kafka-408805-0da92cb1def1.json',
+      'keySource' = 'FILE',
+      'transforms' = 'RegexTransformation',
+      'transforms.RegexTransformation.type' = 'org.apache.kafka.connect.transforms.RegexRouter',
+      'transforms.RegexTransformation.regex' = '(kcbq_)(.*)',
+      'transforms.RegexTransformation.replacement' = '$2'
+);
