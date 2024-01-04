@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR src__airbnb__listings WITH (
+CREATE SOURCE CONNECTOR source__postgres__airbnb WITH (
     'connector.class' = 'io.debezium.connector.postgresql.PostgresConnector',
     'database.hostname' = 'postgres',
     'database.port' = '5432',
@@ -6,8 +6,7 @@ CREATE SOURCE CONNECTOR src__airbnb__listings WITH (
     'database.password' = 'postgres-pw',
     'database.dbname' = 'airbnb',
     'database.server.name' = 'airbnb',
-    'table.whitelist' = 'airbnb_raw.listings',
-    'transforms' = 'unwrap',
+    'topic.prefix'= 'airbnb',
     'transforms.unwrap.type' = 'io.debezium.transforms.ExtractNewRecordState',
     'transforms.unwrap.drop.tombstones' = 'false',
     'transforms.unwrap.delete.handling.mode' = 'rewrite'

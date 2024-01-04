@@ -1,9 +1,10 @@
 {
-  "name": "kcbq-connect1",
+  "name": "bigquery__sink",
   "config": {
   "connector.class": "com.wepay.kafka.connect.bigquery.BigQuerySinkConnector",
   "tasks.max" : "1",
   "topics" : "airbnb.airbnb_raw.listings",
+  "bigQueryRetry":3,
   "sanitizeTopics" : "true",
   "autoCreateTables" : "true",
   "allowNewBigQueryFields" : "true",
@@ -11,7 +12,9 @@
   "schemaRetriever" : "com.wepay.kafka.connect.bigquery.retrieve.IdentitySchemaRetriever",
   "project" : "kafka-408805",
   "defaultDataset" : ".*=airflow",
-  "keyfile" : "etc/confidentials/kafka-408805-0da92cb1def1.json",
+  "bufferSize": "100000",
+  "schemaRegistryLocation": "http://schema-registry:8081",
+  "keyfile" : "etc/confidentials/kafka-408805-key.json",
   "transforms" : "RegexTransformation",
   "transforms.RegexTransformation.type" : "org.apache.kafka.connect.transforms.RegexRouter",
   "transforms.RegexTransformation.regex" : "(kcbq_)(.*)",

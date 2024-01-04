@@ -11,7 +11,7 @@ CREATE SINK CONNECTOR SINK__AIRBNB_RAW__LISTINGS WITH (
       'defaultDataset' = '.*=airbnb',
       'allBQFieldsNullable' = 'true',
       'bigQueryRetry'='10',
-      'keyfile' = 'etc/confidentials/kafka-408805-0da92cb1def1.json',
+      'keyfile' = 'opt/confidentials/kafka-408805-0da92cb1def1.json',
       'keySource' = 'FILE',
       'transforms' = 'RegexTransformation',
       'transforms.RegexTransformation.type' = 'org.apache.kafka.connect.transforms.RegexRouter',

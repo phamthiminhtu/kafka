@@ -1,7 +1,7 @@
 CREATE SCHEMA airbnb_raw;
 
 CREATE TABLE airbnb_raw.census_lga_g01 (
-    LGA_CODE_2016 VARCHAR NULL,
+    LGA_CODE_2016 VARCHAR PRIMARY KEY,
     Tot_P_M NUMERIC NULL,
     Tot_P_F NUMERIC NULL,
     Tot_P_P NUMERIC NULL,
@@ -114,7 +114,7 @@ CREATE TABLE airbnb_raw.census_lga_g01 (
 );
 
 CREATE TABLE airbnb_raw.census_lga_g02 (
-    LGA_CODE_2016 VARCHAR NULL,
+    LGA_CODE_2016 VARCHAR PRIMARY KEY,
     Median_age_persons NUMERIC NULL,
     Median_mortgage_repay_monthly NUMERIC NULL,
     Median_tot_prsnl_inc_weekly NUMERIC NULL,
@@ -127,7 +127,7 @@ CREATE TABLE airbnb_raw.census_lga_g02 (
 );
 
 CREATE TABLE airbnb_raw.listings (
-    LISTING_ID NUMERIC NULL,
+    LISTING_ID NUMERIC PRIMARY KEY,
     SCRAPE_ID VARCHAR NULL,
     SCRAPED_DATE DATE NULL,
     HOST_ID NUMERIC NULL,
@@ -153,13 +153,13 @@ CREATE TABLE airbnb_raw.listings (
 );
 
 CREATE TABLE airbnb_raw.nsw_lga_code (
-    LGA_CODE VARCHAR NULL,
+    LGA_CODE VARCHAR PRIMARY KEY,
     LGA_NAME VARCHAR NULL,
     ingestion_timestamp TIMESTAMP NULL
 );
 
 CREATE TABLE airbnb_raw.nsw_lga_suburb (
-    LGA_NAME VARCHAR NULL,
+    LGA_NAME VARCHAR PRIMARY KEY,
     SUBURB_NAME VARCHAR NULL,
     ingestion_timestamp TIMESTAMP NULL
 );
