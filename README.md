@@ -26,9 +26,9 @@ KSQL
 docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
 
 Start the connector
-curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/bigtable/airbnb.airbnb_raw.listings.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/sink_connectors/bigtable/airbnb.airbnb_raw.listings.json
 
-curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/bigtable/airbnb.airbnb_raw.listings.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/sink_connectors/bigquery/airbnb.airbnb_raw.listings.json
 
 
 
