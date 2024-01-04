@@ -2,7 +2,7 @@
 Streaming data with Kafka. Current projects:
 - CDC (change data capture): stream data from Postgres database to GCP Bigtable using Debezium (log-based Kafka CDC) and Kafka Connect provided by Confluent Platform
 
-# Useful commands
+# Useful resources
 
 Install Kafka Connectors in Docker:
 - Doc: https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/
