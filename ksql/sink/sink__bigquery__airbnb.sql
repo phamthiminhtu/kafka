@@ -1,4 +1,4 @@
-CREATE SINK CONNECTOR SINK__AIRBNB_RAW__LISTINGS WITH (
+CREATE SINK CONNECTOR SINK__BIGQUERY__AIRBNB WITH (
       'connector.class' = 'com.wepay.kafka.connect.bigquery.BigQuerySinkConnector',
       'tasks.max' = '1',
       'topics' = 'airbnb_raw__listings',
