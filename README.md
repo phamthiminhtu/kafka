@@ -1,16 +1,8 @@
-# run docker
-docker-compose.yml up -d
-# run new command in kafka container
-docker exec -it kafka /bin/sh
-# go to bin
-cd opt/bitnami/kafka/bin
+# Description
+Streaming data with Kafka. Current projects:
+- CDC (change data capture): stream data from Postgres database to GCP Bigtable using Debezium (log-based Kafka CDC) and Kafka Connect provided by Confluent Platform
 
-
-kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test
-
-kafka-console-producer.sh --broker-list localhost:9092 --topic test
-
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+# Useful commands
 
 Install Kafka Connectors in Docker:
 - Doc: https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/
