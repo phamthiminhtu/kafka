@@ -4,4 +4,5 @@ steps:
     entrypoint: /bin/sh
     args:
       - '-c'
+      - gcloud auth login
       - gcloud compute ssh instance-1	--zone=australia-southeast1-b --command='/bin/sh /home/phamthiminhtu/pull.sh'
