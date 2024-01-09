@@ -10,6 +10,6 @@ steps:
         chmod 600 ~/root/.ssh/id_rsa && \
         gcloud secrets versions access latest --secret=cloud-build-ssh-key-pub > ~/root/.ssh/id_rsa.pub && \
         chmod 600 ~/root/.ssh/id_rsa.pub && \
-        chown -v $USER /builder/home/.ssh/google_compute_known_hosts && \
+        touch /builder/home/.ssh/google_compute_known_hosts && \
         set -x && \
           gcloud compute --project "kafka-408805" ssh --ssh-key-file=~/root/.ssh/id_rsa --zone "australia-southeast1-b" "instance-1"  --command='/bin/sh /home/phamthiminhtu/pull.sh'
