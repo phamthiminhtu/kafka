@@ -10,9 +10,6 @@ steps:
         chmod 600 ~/root/.ssh/id_rsa && \
         gcloud secrets versions access latest --secret=cloud-build-ssh-key-pub > ~/root/.ssh/id_rsa.pub && \
         chmod 600 ~/root/.ssh/id_rsa.pub && \
-        mkdir -p /builder/home/.ssh/ && \ 
-        touch /builder/home/.ssh/google_compute_known_hosts && \
-        cat ~/root/.ssh/id_rsa.pub  && \
         gcloud compute ssh instance-1 --project=kafka-408805 --zone=australia-southeast1-b --ssh-key-file=~/root/.ssh/id_rsa --troubleshoot && \
         gcloud compute ssh instance-1 --project=kafka-408805 --zone=australia-southeast1-b --ssh-key-file=~/root/.ssh/id_rsa --troubleshoot --tunnel-through-iap && \
         set -x && \
