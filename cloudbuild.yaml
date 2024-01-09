@@ -10,7 +10,5 @@ steps:
         chmod 600 ~/root/.ssh/id_rsa && \
         gcloud secrets versions access latest --secret=cloud-build-ssh-key-pub > ~/root/.ssh/id_rsa.pub && \
         chmod 600 ~/root/.ssh/id_rsa.pub && \
-        cat ~/root/.ssh/id_rsa && \
-        gcloud compute ssh instance-1 --project=kafka-408805 --zone=australia-southeast1-b --ssh-key-file=~/root/.ssh/id_rsa --troubleshoot && \
         set -x && \
-          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b --strict-host-key-checking=no --command='/bin/sh /home/phamthminhtu/pull.sh'
+          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b '-vvv' --command='/bin/sh /home/phamthminhtu/pull.sh'
