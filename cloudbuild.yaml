@@ -5,4 +5,4 @@ steps:
     args:
       - '-c'
       - |
-        gcloud compute --project "kafka-408805" ssh --zone "australia-southeast1-b" "instance-1" --command='/bin/sh /home/phamthiminhtu/pull.sh'
+        gcloud compute --project "kafka-408805" ssh --zone "australia-southeast1-b" "instance-1" --internal-ip --command='/bin/sh /home/phamthiminhtu/pull.sh'
