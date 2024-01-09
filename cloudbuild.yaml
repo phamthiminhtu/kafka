@@ -13,4 +13,4 @@ steps:
         gcloud compute ssh instance-1 --project=kafka-408805 --zone=australia-southeast1-b --ssh-key-file=~/root/.ssh/id_rsa --troubleshoot && \
         gcloud compute ssh instance-1 --project=kafka-408805 --zone=australia-southeast1-b --ssh-key-file=~/root/.ssh/id_rsa --troubleshoot --tunnel-through-iap && \
         set -x && \
-          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b  --command='/bin/sh /home/phamthiminhtu/pull.sh'
+          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b --tunnel-through-iap  --command='/bin/sh /home/phamthiminhtu/pull.sh'
