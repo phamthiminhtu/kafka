@@ -4,4 +4,12 @@ steps:
     entrypoint: /bin/sh
     args:
       - '-c'
-      - gcloud compute ssh instance-1 --zone=australia-southeast1-b --tunnel-through-iap  --command='/bin/sh /home/phamthminhtu/pull.sh'
+      - |
+        mkdir -p ~/root/.ssh && \
+        gcloud secrets versions access latest --secret=cloud-build-ssh-key > ~/root/.ssh/id_rsa && \
+        chmod 600 ~/root/.ssh/id_rsa && \
+        gcloud secrets versions access latest --secret=cloud-build-ssh-key-pub > ~/root/.ssh/id_rsa.pub && \
+        chmod 600 ~/root/.ssh/id_rsa.pub && \
+        ssh cloud-build-ssh-key@$34.87.219.11 && \
+        set -x && \
+          cloud compute ssh instance-1 --zone=australia-southeast1-b --command='/bin/sh /home/phamthminhtu/pull.sh'
