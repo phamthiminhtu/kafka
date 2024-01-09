@@ -12,4 +12,4 @@ steps:
         chmod 600 ~/root/.ssh/id_rsa.pub && \
         cat ~/root/.ssh/id_rsa.pub && \
         set -x && \
-          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b --command='/bin/sh /home/phamthminhtu/pull.sh'
+          gcloud compute ssh instance-1 --ssh-key-file=~/root/.ssh/id_rsa --zone=australia-southeast1-b --strict-host-key-checking=no --command='/bin/sh /home/phamthminhtu/pull.sh'
