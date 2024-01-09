@@ -4,5 +4,6 @@ steps:
     entrypoint: /bin/sh
     args:
       - '-c'
-      - gcloud config set project kafka-408805
-      - gcloud compute ssh instance-1	--zone australia-southeast1-b --command='/bin/sh /home/phamthiminhtu/pull.sh'
+      - |
+        gcloud config set project kafka-408805 &&\
+        gcloud compute ssh instance-1	--zone australia-southeast1-b --command='/bin/sh /home/phamthiminhtu/pull.sh'
