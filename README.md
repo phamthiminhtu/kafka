@@ -6,7 +6,6 @@ Streaming data with Kafka. Current projects:
 
 Install Kafka Connectors in Docker:
 - Doc: https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/
-- Currently using the 2nd way
 
 Monitor Kafka connect and Connector
 https://docs.confluent.io/platform/current/connect/monitoring.html 
@@ -18,10 +17,7 @@ KSQL
 docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
 
 Start the connector
-curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/sink_connectors/bigtable/airbnb.airbnb_raw.listings.json
-
-curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/sink_connectors/bigquery/airbnb.airbnb_raw.listings.json
-
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/connectors/sink/gcp/gcs-sink.json
 
 CICD with CloudBuild, Compute Engine
 https://beranger.medium.com/automate-deployment-with-google-compute-engine-and-cloud-build-cccd5c3eb93c
