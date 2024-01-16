@@ -1,0 +1,21 @@
+{
+    "name": "gcs-sink",
+    "config": {
+      "connector.class": "io.confluent.connect.gcs.GcsSinkConnector",
+      "tasks.max": "1",
+      "topics": "airbnb.airbnb_raw.listings",
+      "gcs.bucket.name": "kafka_airbnb",
+      "gcs.credentials.path": "opt/confidentials/kafka-408805-key.json",
+      "gcs.part.size": "5242880",
+      "flush.size": "3",
+      "storage.class": "io.confluent.connect.gcs.storage.GcsStorage",
+      "format.class": "io.confluent.connect.gcs.format.avro.AvroFormat",
+      "partitioner.class": "io.confluent.connect.storage.partitioner.DefaultPartitioner",
+      "key.converter.schemas.enable" : "true",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "schema.compatibility": "NONE",
+      "confluent.topic.bootstrap.servers": "broker:29092",
+      "confluent.topic.replication.factor": "1",
+      "name": "gcs-sink"
+    }
+  }

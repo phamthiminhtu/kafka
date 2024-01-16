@@ -93,7 +93,7 @@ services:
   #       sleep infinity
 
   connect:
-    image: docker.io/library/tototus-connect:1.001
+    image: docker.io/library/tototus_kafka_gcp
     hostname: connect
     container_name: connect
     depends_on:

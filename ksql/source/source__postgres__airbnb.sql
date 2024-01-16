@@ -9,5 +9,6 @@ CREATE SOURCE CONNECTOR source__postgres__airbnb WITH (
     'topic.prefix'= 'airbnb',
     'transforms.unwrap.type' = 'io.debezium.transforms.ExtractNewRecordState',
     'transforms.unwrap.drop.tombstones' = 'false',
-    'transforms.unwrap.delete.handling.mode' = 'rewrite'
+    'transforms.unwrap.delete.handling.mode' = 'rewrite',
+    'decimal.handling.mode' = 'string'
 );
