@@ -4,6 +4,7 @@
       "connector.class": "io.confluent.connect.gcs.GcsSinkConnector",
       "tasks.max": "1",
       "topics": "airbnb.airbnb_raw.listings",
+      "topics.regex": "airbnb.*",
       "gcs.bucket.name": "kafka_airbnb",
       "gcs.credentials.path": "opt/confidentials/kafka-408805-key.json",
       "gcs.part.size": "5242880",
