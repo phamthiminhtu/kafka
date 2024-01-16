@@ -16,8 +16,17 @@ https://docs.ksqldb.io/en/latest/tutorials/etl/?_ga=2.12145522.779215627.1700084
 KSQL
 docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
 
-Start the connector
+Create a connector
 curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @opt/connectors/sink/gcp/gcs-sink.json
+
+Update the connector 
+(the config file structure is a little bit different from POST [ref](https://stackoverflow.com/questions/53384144/kafka-connect-rest-interface-put-connectors-string-name-config-return-erro)
+)
+curl --request PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/gcs-sink/config -d @opt/connectors/sink/gcp/gcs-sink-update.json
+
+List current connectors
+curl --request GET -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/
+
 
 CICD with CloudBuild, Compute Engine
 https://beranger.medium.com/automate-deployment-with-google-compute-engine-and-cloud-build-cccd5c3eb93c
