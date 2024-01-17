@@ -6,3 +6,5 @@ confluent-hub-components/*
 .DS_Store
 confidentials/*
 data/*
+dagster-env/*
+*.toml

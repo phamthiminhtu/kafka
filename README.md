@@ -22,7 +22,7 @@ curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json"
 Update the connector 
 (the config file structure is a little bit different from POST [ref](https://stackoverflow.com/questions/53384144/kafka-connect-rest-interface-put-connectors-string-name-config-return-erro)
 )
-curl --request PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/gcs-sink/config -d @opt/connectors/sink/gcp/gcs-sink-update.json
+curl --request PUT -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/gcs-sink/config -d @opt/connectors/sink/gcp/archive/gcs-sink-update.json
 
 List current connectors
 curl --request GET -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/
@@ -33,5 +33,9 @@ https://beranger.medium.com/automate-deployment-with-google-compute-engine-and-c
 
 Generate SSH 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux
+
+
+Docker build
+docker build --tag tototus-dagster --file Dockerfile-dagster .
 
 
