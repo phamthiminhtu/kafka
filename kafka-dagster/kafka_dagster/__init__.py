@@ -1,4 +1,4 @@
-from dagster import Definitions, load_assets_from_modules
+from dagster import Definitions, load_assets_from_modules, FilesystemIOManager
 from dagster_gcp import BigQueryResource
 from dagster_gcp.gcs import GCSResource
 from . import airbnb__gcs_to_bigquery_asset
@@ -18,6 +18,7 @@ defs = Definitions(
         ),
         "gcs_resource": GCSResource(
             project=GCP_PROJECT
-        )
+        ),
+        "io_manager": FilesystemIOManager(base_dir="kafka-dagster/kafka_dagster/tmp_files")
     }
 )

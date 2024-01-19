@@ -8,4 +8,6 @@ confidentials/*
 data/*
 dagster-env/*
 kafka-dagster/tmpi3mhvv01/*
+kafka-dagster/tmpsc_gmg39/*
 *.pyc
+kafka_dagster/__pycache__/*
