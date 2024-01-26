@@ -1,6 +1,7 @@
 from dagster_gcp import BigQueryResource
 from dagster_gcp.gcs import GCSResource
 from dagster import asset
+from dagster import Definitions
 
 
 GCP_PROJECT = 'kafka-408805'
@@ -59,7 +60,7 @@ def get_gcs_blob(
     context.log.info(f'{len(blobs.prefixes)} blobs found')
     return blobs.prefixes
 
-@asset(io_manager_key="io_manager")
+@asset
 def create_external_table(
         context,
         bigquery_resource: BigQueryResource,
@@ -118,5 +119,15 @@ def create_external_table(
         raise Exception(exceptions)
 
 
-
+defs = Definitions(
+    assets=[create_external_table],
+    resources={
+        "bigquery_resource": BigQueryResource(
+            project=GCP_PROJECT
+        ),
+        "gcs_resource": GCSResource(
+            project=GCP_PROJECT
+        )
+    }
+)
 
