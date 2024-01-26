@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+kafka_dagster/__init__.py
+kafka_dagster/assets.py
+kafka_dagster.egg-info/PKG-INFO
+kafka_dagster.egg-info/SOURCES.txt
+kafka_dagster.egg-info/dependency_links.txt
+kafka_dagster.egg-info/requires.txt
+kafka_dagster.egg-info/top_level.txt

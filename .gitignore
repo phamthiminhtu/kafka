@@ -6,3 +6,8 @@ confluent-hub-components/*
 .DS_Store
 confidentials/*
 data/*
+dagster-env/*
+kafka-dagster/kafka_dagster/tmp*
+kafka-dagster/tmp*
+*.pyc
+kafka_dagster/__pycache__/*
