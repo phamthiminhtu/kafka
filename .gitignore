@@ -7,7 +7,7 @@ confluent-hub-components/*
 confidentials/*
 data/*
 dagster-env/*
-kafka-dagster/tmpi3mhvv01/*
-kafka-dagster/tmpsc_gmg39/*
+kafka-dagster/kafka_dagster/tmp*
+kafka-dagster/tmp*
 *.pyc
 kafka_dagster/__pycache__/*

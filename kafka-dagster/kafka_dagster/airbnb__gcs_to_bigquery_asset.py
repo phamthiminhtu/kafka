@@ -47,33 +47,11 @@ def get_bigquery_tables(
         context.log.info('Done getting a list of existing external tables.')
     return list(rows)
 
-def get_gcs_blob(
-        context,
-        gcs_blob_prefix,
-        gcs_resource: GCSResource,
-    ):
-    gsc_client = gcs_resource.get_client()
-    blobs = gsc_client.list_blobs(GCS_BUCKET, prefix=gcs_blob_prefix, delimiter='/')
-    # Note: The call returns a response only when the iterator is consumed. https://cloud.google.com/storage/docs/listing-objects#client-libraries
-    for blob in blobs:
-        print(blob.name)
-    context.log.info(f'{len(blobs.prefixes)} blobs found')
-    return blobs.prefixes
-
 @asset
-def create_external_table(
+def get_bigquery_existing_external_tables(
         context,
         bigquery_resource: BigQueryResource,
-        gcs_resource: GCSResource,
-    ) -> None:
-    """
-        Input: GCS location of files
-        Output: External tables created on BigQuery
-    """
-    external_source_format = "AVRO"
-    exceptions = []
-    blobs_prefixes = get_gcs_blob(context, gcs_blob_prefix=GCS_BLOB_PREFIX, gcs_resource=gcs_resource)
-    context.log.info(blobs_prefixes)
+    ) -> list:
     bq_tables_info = get_bigquery_tables(
         context,
         bq_project=GCP_PROJECT,
@@ -82,13 +60,35 @@ def create_external_table(
         condition = "table_type = 'EXTERNAL'"
     )
     existed_external_tables = [row[0] for row in bq_tables_info]
+    return existed_external_tables
+
+@asset
+def get_gcs_blob(
+        context,
+        gcs_resource: GCSResource,
+    ):
+    gsc_client = gcs_resource.get_client()
+    blobs = gsc_client.list_blobs(GCS_BUCKET, prefix=GCS_BLOB_PREFIX, delimiter='/')
+    # Note: The call returns a response only when the iterator is consumed. https://cloud.google.com/storage/docs/listing-objects#client-libraries
+    for blob in blobs:
+        print(blob.name)
+    context.log.info(f'{len(blobs.prefixes)} blobs found')
+    return blobs.prefixes
+
+
+@asset
+def get_new_tables_to_create(
+        context,
+        get_bigquery_existing_external_tables,
+        get_gcs_blob,
+        gcs_resource: GCSResource,
+    ) -> list:
     tables_to_create = []
-    context.log.info(existed_external_tables)
-    for blob_prefix in blobs_prefixes:
+    for blob_prefix in get_gcs_blob:
         topic = blob_prefix.split('/')[1]
         table_name = topic.split('.')[-1]
         table_id = f"{GCP_PROJECT}.{BIGQUERY_DATASET}.{table_name}"
-        if table_id in existed_external_tables:
+        if table_id in get_bigquery_existing_external_tables:
             continue
         table_info = {
             "topic" : blob_prefix,
@@ -98,11 +98,26 @@ def create_external_table(
 
     context.log.info(f'Total {len(tables_to_create)} new topics found. Tables to create:')
     context.log.info(tables_to_create)
+    return tables_to_create
 
-    if len(tables_to_create) == 0:
+@asset
+def bigquery_external_table_asset(
+        context,
+        get_bigquery_existing_external_tables,
+        get_new_tables_to_create,
+        bigquery_resource: BigQueryResource
+    ) -> None:
+    """
+        Input: GCS location of files
+        Output: External tables created on BigQuery
+    """
+    external_source_format = "AVRO"
+    exceptions = []
+
+    if len(get_new_tables_to_create) == 0:
         return
-    for table_info in tables_to_create:
-        source_uris = f'gs://kafka_airbnb/{table_info.get(topic)}*'
+    for table_info in get_new_tables_to_create:
+        source_uris = f'gs://kafka_airbnb/{table_info.get("topic")}*'
         table_id = table_info.get("table_id")
         try:
             create_bigquery_external_table(
@@ -120,7 +135,12 @@ def create_external_table(
 
 
 defs = Definitions(
-    assets=[create_external_table],
+    assets=[
+        bigquery_external_table_asset,
+        get_gcs_blob,
+        get_new_tables_to_create,
+        get_bigquery_existing_external_tables
+    ],
     resources={
         "bigquery_resource": BigQueryResource(
             project=GCP_PROJECT

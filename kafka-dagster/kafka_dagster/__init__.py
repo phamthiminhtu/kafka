@@ -18,7 +18,6 @@ defs = Definitions(
         ),
         "gcs_resource": GCSResource(
             project=GCP_PROJECT
-        ),
-        "io_manager": FilesystemIOManager(base_dir="kafka-dagster/kafka_dagster/tmp_files")
+        )
     }
 )
