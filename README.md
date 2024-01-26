@@ -13,8 +13,8 @@ The workflow is as follows:
 
 # Useful resources
 
-Install Kafka Connectors in Docker:
-- Doc: https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/
+- Install Kafka Connectors in Docker:
+  Doc: https://rmoff.net/2020/06/19/how-to-install-connector-plugins-in-kafka-connect/
 
 - Monitor Kafka connect and Connector
 https://docs.confluent.io/platform/current/connect/monitoring.html 
