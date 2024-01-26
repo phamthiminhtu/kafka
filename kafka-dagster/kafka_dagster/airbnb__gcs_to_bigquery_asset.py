@@ -101,7 +101,7 @@ def get_new_tables_to_create(
     return tables_to_create
 
 @asset
-def bigquery_external_table_asset(
+def create_bigquery_external_table_asset(
         context,
         get_bigquery_existing_external_tables,
         get_new_tables_to_create,
@@ -136,7 +136,7 @@ def bigquery_external_table_asset(
 
 defs = Definitions(
     assets=[
-        bigquery_external_table_asset,
+        create_bigquery_external_table_asset,
         get_gcs_blob,
         get_new_tables_to_create,
         get_bigquery_existing_external_tables
