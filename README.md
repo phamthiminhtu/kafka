@@ -1,7 +1,7 @@
 # Description
 Streaming data with Kafka. Current projects:
 ## CDC (change data capture)
-![kafka](https://github.com/phamthiminhtu/kafka/assets/56192840/112c80f7-ebf9-4425-9303-a9c0f1b23a4b)
+![kafka](https://github.com/phamthiminhtu/kafka/assets/56192840/e0e116dc-bdf3-40ce-b39d-11bb87609f40)
 
 The workflow is as follows:
   1. Stream data from Postgres to Kakfa using Debezium (log-based CDC), KSQL and Kafka Connect provided Confluent Platform. Code: [ksql/sink/sink__bigquery__airbnb.sql](https://github.com/phamthiminhtu/kafka/blob/master/ksql/source/source__postgres__airbnb.sql)
