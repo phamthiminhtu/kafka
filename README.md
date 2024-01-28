@@ -4,7 +4,7 @@ Streaming data with Kafka. Current projects:
 ![kafka](https://github.com/phamthiminhtu/kafka/assets/56192840/e0e116dc-bdf3-40ce-b39d-11bb87609f40)
 
 The workflow is as follows:
-  1. Stream data from Postgres to Kakfa using Debezium (log-based CDC), KSQL and Kafka Connect provided Confluent Platform. Code: [ksql/sink/sink__bigquery__airbnb.sql](https://github.com/phamthiminhtu/kafka/blob/master/ksql/source/source__postgres__airbnb.sql)
+  1. Stream data from Postgres to Kakfa using Debezium (log-based CDC), KSQL and Kafka Connect provided Confluent Platform. Code: [ksql/source/source__postgres__airbnb.sql](https://github.com/phamthiminhtu/kafka/blob/master/ksql/source/source__postgres__airbnb.sql)
   2. Sink data from Kafka to Google Cloud Storage using Kafka Connect (data is stored in hive-style partitioning). Code: [connectors/sink/gcp/gcs-sink.json](https://github.com/phamthiminhtu/kafka/blob/master/connectors/sink/gcp/gcs-sink.json)
   3. Automatically detect and create new topics as external tables on BigQuery using Dagster. Code: [kafka-dagster/kafka_dagster/airbnb__gcs_to_bigquery_asset.py](https://github.com/phamthiminhtu/kafka/blob/master/kafka-dagster/kafka_dagster/airbnb__gcs_to_bigquery_asset.py)
   - Example of the DAG created on Dagster:
