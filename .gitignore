@@ -11,3 +11,9 @@ kafka-dagster/kafka_dagster/tmp*
 kafka-dagster/tmp*
 *.pyc
 kafka_dagster/__pycache__/*
+dbt_dagster/dbt_packages/*
+dbt_dagster/target*
+dbt_dagster/logs/*
+dbt_dagster/archived/*
+dbt_dagster/logs/*
+dbt_dagster/airbnb/tmp*

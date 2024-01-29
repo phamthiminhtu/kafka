@@ -45,4 +45,8 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 - Docker build
 docker build --tag tototus-dagster --file Dockerfile-dagster .
 
+- dbt-dagster
+cd dbt_dagster/airbnb
+dagster dev
+
 
